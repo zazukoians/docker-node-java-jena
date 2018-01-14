@@ -18,6 +18,9 @@
 FROM zazukoians/node-java
 MAINTAINER Adrian Gschwend <adrian.gschwend@zazuko.com>
 
+# Packages from Debian itself
+RUN apt-get install -y serdi
+
 # Update below according to https://jena.apache.org/download/
 # and .sha1 from https://www.apache.org/dist/jena/binaries/
 ENV JENA_SHA1 dc209016fa1d631324839d7aaf3ccf673cc9d4fd
