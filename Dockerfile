@@ -19,7 +19,14 @@ FROM zazukoians/node-java
 MAINTAINER Adrian Gschwend <adrian.gschwend@zazuko.com>
 
 # Packages from Debian itself
-RUN apt-get install -y serdi
+#RUN apt-get install -y build-essential
+
+# serdi install (Debian version is too old)
+
+RUN cd /tmp && curl -L http://git.drobilla.net/cgit.cgi/serd.git/snapshot/serd-0.28.0.tar.gz | tar xz
+RUN cd /tmp/serd-* && ./waf configure && ./waf && ./waf install
+RUN cd / && rm -rf /tmp/serd-*
+RUN serdi -v
 
 # Update below according to https://jena.apache.org/download/
 # and .sha1 from https://www.apache.org/dist/jena/binaries/
