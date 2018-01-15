@@ -19,7 +19,7 @@ FROM zazukoians/node-java
 MAINTAINER Adrian Gschwend <adrian.gschwend@zazuko.com>
 
 # Packages from Debian itself
-#RUN apt-get install -y build-essential
+RUN apt-get install -y unzip
 
 # serdi install (Debian version is too old)
 
