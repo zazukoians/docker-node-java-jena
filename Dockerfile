@@ -19,7 +19,7 @@ FROM zazukoians/node-java
 MAINTAINER Adrian Gschwend <adrian.gschwend@zazuko.com>
 
 # Packages from Debian itself
-RUN apt-get install -y unzip
+RUN apt-get install -y unzip raptor2-utils
 
 # serdi install (Debian version is too old)
 
