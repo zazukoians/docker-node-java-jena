@@ -1,4 +1,4 @@
-# Node with Java 8 JRE & Apache Jena distro Docker Image
+# Node with Java JRE & Apache Jena distro Docker Image
 
 Based on our [node & Java](https://github.com/zazukoians/docker-node-java) image, which itself is based on the official node image.
 
