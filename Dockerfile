@@ -19,7 +19,7 @@ FROM zazukoians/node-java
 MAINTAINER Adrian Gschwend <adrian.gschwend@zazuko.com>
 
 # Packages from Debian itself
-RUN apt-get update && apt-get install -y unzip raptor2-utils s4cmd jq httpie
+RUN apt-get update && apt-get install -y unzip raptor2-utils s4cmd jq httpie rclone
 RUN ln -s /usr/bin/s4cmd /usr/bin/s3cmd
 
 # serdi install (Debian version is too old)
