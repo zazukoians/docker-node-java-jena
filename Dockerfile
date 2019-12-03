@@ -31,8 +31,8 @@ RUN serdi -v
 
 # Update below according to https://jena.apache.org/download/
 # and .sha1 from https://www.apache.org/dist/jena/binaries/
-ENV JENA_SHA1 0cccc756cbd151366b6dc4ce0e02e2ae24661981 
-ENV JENA_VERSION 3.12.0
+ENV JENA_SHA1 30e5d2bfd603d24197d35b73a52f8af4ee89b946
+ENV JENA_VERSION 3.13.1
 ENV JENA_MIRROR http://www.eu.apache.org/dist/
 ENV JENA_ARCHIVE http://archive.apache.org/dist/
 #
