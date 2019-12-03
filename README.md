@@ -8,6 +8,10 @@ If you have any problems with this image please report issues on Github. Pull re
 
 We use the image for some pipelines where we need both Node and Jena to create & validate RDF data.
 
+### Versioning
+
+We provide tags for the according Jena version and also a latest version pointing to the most recent tag. In case we have to re-release a version we add `_1` or alike to the version, for example `3.13.1_1`
+
 ### Use the pre built image
 
 The pre built image can be downloaded using Docker.
