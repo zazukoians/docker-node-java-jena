@@ -15,8 +15,8 @@
 
 # Derived from Stains Alpine based image at https://github.com/stain/jena-docker
 
-FROM zazukoians/node-java:1.0.0
-MAINTAINER Adrian Gschwend <adrian.gschwend@zazuko.com>
+FROM zazukoians/node-java:2.0.0
+LABEL maintainer="Adrian Gschwend <adrian.gschwend@zazuko.com>"
 
 # Packages from Debian itself
 RUN apt-get update && apt-get install -y unzip raptor2-utils s4cmd jq httpie rclone libxml2-utils 
