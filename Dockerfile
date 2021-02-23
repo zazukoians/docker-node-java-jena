@@ -15,7 +15,7 @@
 
 # Derived from Stains Alpine based image at https://github.com/stain/jena-docker
 
-FROM zazukoians/node-java:2.1.0
+FROM zazukoians/node-java:branch-develop
 LABEL maintainer="Adrian Gschwend <adrian.gschwend@zazuko.com>"
 
 # Packages from Debian itself
