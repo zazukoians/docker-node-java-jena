@@ -15,7 +15,7 @@
 
 # Derived from Stains Alpine based image at https://github.com/stain/jena-docker
 
-FROM zazukoians/node-java:2.0.0
+FROM zazukoians/node-java:2.1.0
 LABEL maintainer="Adrian Gschwend <adrian.gschwend@zazuko.com>"
 
 # Packages from Debian itself
@@ -24,15 +24,15 @@ RUN ln -s /usr/bin/s4cmd /usr/bin/s3cmd
 
 # serdi install (Debian version is too old)
 
-RUN cd /tmp && curl -L http://git.drobilla.net/cgit.cgi/serd.git/snapshot/serd-0.30.0.tar.gz | tar xz
+RUN cd /tmp && curl -L http://download.drobilla.net/serd-0.30.10.tar.bz2 | tar xj
 RUN cd /tmp/serd-* && ./waf configure && ./waf && ./waf install
 RUN cd / && rm -rf /tmp/serd-*
 RUN serdi -v
 
 # Update below according to https://jena.apache.org/download/
 # and .sha1 from https://www.apache.org/dist/jena/binaries/
-ENV JENA_SHA1 8158d9daad8426d11a0096d0d017d15b09eeb4a6
-ENV JENA_VERSION 3.16.0
+ENV JENA_SHA1 48a3459216a5298fd99695ce6347c8a5739f3e34
+ENV JENA_VERSION 3.17.0
 ENV JENA_MIRROR http://www.eu.apache.org/dist/
 ENV JENA_ARCHIVE http://archive.apache.org/dist/
 #
