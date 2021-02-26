@@ -59,4 +59,4 @@ RUN riot  --version
 RUN mkdir /rdf
 WORKDIR /rdf
 #VOLUME /rdf
-CMD ["/jena/bin/riot"]
+#CMD ["/jena/bin/riot"]
