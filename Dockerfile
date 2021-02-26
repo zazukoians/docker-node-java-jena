@@ -15,11 +15,11 @@
 
 # Derived from Stains Alpine based image at https://github.com/stain/jena-docker
 
-FROM zazukoians/node-java:branch-develop
+FROM zazukoians/node-java:3.0.0
 LABEL maintainer="Adrian Gschwend <adrian.gschwend@zazuko.com>"
 
 # Packages from Debian itself
-RUN apt-get update && apt-get install -y unzip raptor2-utils s4cmd jq httpie rclone libxml2-utils 
+RUN apt-get update && apt-get install -y unzip raptor2-utils s4cmd jq httpie rclone libxml2-utils vim-tiny
 RUN ln -s /usr/bin/s4cmd /usr/bin/s3cmd
 
 # serdi install (Debian version is too old)
@@ -51,7 +51,7 @@ RUN     wget -q -O jena.tar.gz $JENA_MIRROR/jena/binaries/apache-jena-$JENA_VERS
 
 # Add to PATH
 ENV PATH $PATH:/jena/bin
-# Check it works
+# Print verson to validate
 RUN riot  --version
 
 # Default dir /rdf, can be used with
