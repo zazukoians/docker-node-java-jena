@@ -1,62 +1,39 @@
-#   Licensed to the Apache Software Foundation (ASF) under one or more
-#   contributor license agreements.  See the NOTICE file distributed with
-#   this work for additional information regarding copyright ownership.
-#   The ASF licenses this file to You under the Apache License, Version 2.0
-#   (the "License"); you may not use this file except in compliance with
-#   the License.  You may obtain a copy of the License at
-#
-#       http://www.apache.org/licenses/LICENSE-2.0
-#
-#   Unless required by applicable law or agreed to in writing, software
-#   distributed under the License is distributed on an "AS IS" BASIS,
-#   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-#   See the License for the specific language governing permissions and
-#   limitations under the License.
+FROM docker.io/library/ubuntu:22.04
 
-# Derived from Stains Alpine based image at https://github.com/stain/jena-docker
+ENV DEBIAN_FRONTEND="noninteractive"
+ENV NODE_VERSION="18"
+ENV EYE_VERSION="2.7.5"
+ENV JENA_VERSION="4.7.0"
 
-FROM zazukoians/node-java:3.0.0
-LABEL maintainer="Adrian Gschwend <adrian.gschwend@zazuko.com>"
+WORKDIR /app
 
-# Packages from Debian itself
-RUN apt-get update && apt-get install -y unzip raptor2-utils s4cmd jq httpie rclone libxml2-utils vim-tiny
-RUN ln -s /usr/bin/s4cmd /usr/bin/s3cmd
+# install base tools + Java
+RUN apt-get update \
+  && apt-get install -y openjdk-19-jre curl vim git jq wget s3cmd unzip gpg lsb-release swi-prolog serdi \
+  && apt-get clean
 
-# serdi install (Debian version is too old)
+# install NodeJS
+RUN curl -fsSL https://deb.nodesource.com/gpgkey/nodesource.gpg.key | gpg --dearmor | tee /usr/share/keyrings/nodesource.gpg >/dev/null \
+  && gpg --no-default-keyring --keyring /usr/share/keyrings/nodesource.gpg --list-keys \
+  && chmod a+r /usr/share/keyrings/nodesource.gpg \
+  && DISTRO="$(lsb_release -s -c)" \
+  && echo "deb [signed-by=/usr/share/keyrings/nodesource.gpg] "https://deb.nodesource.com/node_${NODE_VERSION}.x" "${DISTRO}" main" | tee /etc/apt/sources.list.d/nodesource.list \
+  && echo "deb-src [signed-by=/usr/share/keyrings/nodesource.gpg] "https://deb.nodesource.com/node_${NODE_VERSION}.x" "${DISTRO}" main" | tee -a /etc/apt/sources.list.d/nodesource.list \
+  && apt-get update \
+  && apt-get install -y nodejs \
+  && apt-get clean
 
-RUN cd /tmp && curl -L http://download.drobilla.net/serd-0.30.10.tar.bz2 | tar xj
-RUN cd /tmp/serd-* && ./waf configure && ./waf && ./waf install
-RUN cd / && rm -rf /tmp/serd-*
-RUN serdi -v
+# install barnard59 globally
+RUN npm install -g barnard59
 
-# Update below according to https://jena.apache.org/download/
-# and .sha1 from https://www.apache.org/dist/jena/binaries/
-ENV JENA_SHA1 48a3459216a5298fd99695ce6347c8a5739f3e34
-ENV JENA_VERSION 3.17.0
-ENV JENA_MIRROR http://www.eu.apache.org/dist/
-ENV JENA_ARCHIVE http://archive.apache.org/dist/
-#
+# install Apache Jena tools
+RUN curl -fsSL "https://dlcdn.apache.org/jena/binaries/apache-jena-${JENA_VERSION}.tar.gz" | tar zxf - \
+  && mv apache-jena* /jena \
+  && rm -f jena.tar.gz* \
+  && cd /jena && rm -rf *javadoc* *src* bat
+ENV PATH="${PATH}:/jena/bin"
 
-WORKDIR /tmp
-# sha1 checksum
-RUN echo "$JENA_SHA1  jena.tar.gz" > jena.tar.gz.sha1
-# Download/check/unpack/move in one go (to reduce image size)
-RUN     wget -q -O jena.tar.gz $JENA_MIRROR/jena/binaries/apache-jena-$JENA_VERSION.tar.gz || \
-        wget -q -O jena.tar.gz $JENA_ARCHIVE/jena/binaries/apache-jena-$JENA_VERSION.tar.gz && \
-  sha1sum -c jena.tar.gz.sha1 && \
-  tar zxf jena.tar.gz && \
-  mv apache-jena* /jena && \
-  rm jena.tar.gz* && \
-  cd /jena && rm -rf *javadoc* *src* bat
-
-# Add to PATH
-ENV PATH $PATH:/jena/bin
-# Print verson to validate
-RUN riot  --version
-
-# Default dir /rdf, can be used with
-# --volume
-RUN mkdir /rdf
-WORKDIR /rdf
-#VOLUME /rdf
-#CMD ["/jena/bin/riot"]
+# install EYE reasoning engine
+RUN curl -fsSL "https://github.com/eyereasoner/eye/archive/refs/tags/v${EYE_VERSION}.tar.gz" | tar -xzf - \
+  && "./eye-${EYE_VERSION}/install.sh" --prefix=/usr/local \
+  && rm -rf "./eye-${EYE_VERSION}"
