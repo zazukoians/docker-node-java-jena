@@ -2,7 +2,7 @@ FROM docker.io/library/ubuntu:22.04
 
 ENV DEBIAN_FRONTEND="noninteractive"
 ENV NODE_VERSION="18"
-ENV EYE_VERSION="2.7.5"
+ENV EYE_VERSION="4.14.6"
 ENV JENA_VERSION="4.9.0"
 
 WORKDIR /app
