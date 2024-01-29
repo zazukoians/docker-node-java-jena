@@ -3,7 +3,7 @@ FROM docker.io/library/ubuntu:22.04
 ENV DEBIAN_FRONTEND="noninteractive"
 ENV NODE_VERSION="18"
 ENV EYE_VERSION="4.14.6"
-ENV JENA_VERSION="4.9.0"
+ENV JENA_VERSION="4.10.0"
 
 WORKDIR /app
 
@@ -27,7 +27,7 @@ RUN curl -fsSL https://deb.nodesource.com/gpgkey/nodesource.gpg.key | gpg --dear
 RUN npm install -g barnard59
 
 # install Apache Jena tools
-RUN curl -fsSL "https://dlcdn.apache.org/jena/binaries/apache-jena-${JENA_VERSION}.tar.gz" | tar zxf - \
+RUN curl -fsSL "https://dlcdn.apache.org/jena/binaries/apache-jena-fuseki-${JENA_VERSION}.tar.gz" | tar zxf - \
   && mv apache-jena* /jena \
   && rm -f jena.tar.gz* \
   && cd /jena && rm -rf *javadoc* *src* bat
