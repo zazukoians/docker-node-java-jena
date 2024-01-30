@@ -1,5 +1,11 @@
 # docker-node-java-jena
 
+## 5.0.1
+
+### Patch Changes
+
+- 55a9066: Add missing Apache Jena tools
+
 ## 5.0.0
 
 ### Major Changes
