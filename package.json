@@ -1,0 +1,16 @@
+{
+  "name": "docker-node-java-jena",
+  "version": "4.1.0",
+  "description": "Docker image that contains tools that can be used for pipelines",
+  "main": "index.js",
+  "repository": "git@github.com:zazukoians/docker-node-java-jena.git",
+  "author": "Zazuko GmbH",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "release": "changeset tag"
+  },
+  "devDependencies": {
+    "@changesets/cli": "^2.27.1"
+  }
+}
