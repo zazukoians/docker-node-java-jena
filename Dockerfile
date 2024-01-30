@@ -1,7 +1,7 @@
 FROM docker.io/library/ubuntu:22.04
 
 ENV DEBIAN_FRONTEND="noninteractive"
-ENV NODE_VERSION="18"
+ENV NODE_VERSION="20"
 ENV EYE_VERSION="9.6.5"
 ENV JENA_VERSION="4.10.0"
 
