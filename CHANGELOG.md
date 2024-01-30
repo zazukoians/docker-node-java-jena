@@ -1,5 +1,12 @@
 # docker-node-java-jena
 
+## 5.0.0
+
+### Major Changes
+
+- d442608: Upgrade EYE to 9.6.5
+- efb3443: Upgrade Node to 20
+
 ## 4.2.0
 
 ### Minor Changes
