@@ -1,6 +1,6 @@
 {
   "name": "docker-node-java-jena",
-  "version": "5.0.1",
+  "version": "5.0.2",
   "description": "Docker image that contains tools that can be used for pipelines",
   "main": "index.js",
   "repository": "git@github.com:zazukoians/docker-node-java-jena.git",
