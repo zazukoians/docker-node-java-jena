@@ -1,5 +1,11 @@
 # docker-node-java-jena
 
+## 5.0.2
+
+### Patch Changes
+
+- dad0a3d: Upgrade EYE to 9.7.10.
+
 ## 5.0.1
 
 ### Patch Changes
