@@ -1,5 +1,11 @@
 # docker-node-java-jena
 
+## 5.1.0
+
+### Minor Changes
+
+- 0972b27: Add `mc` (Minio client) CLI
+
 ## 5.0.2
 
 ### Patch Changes
