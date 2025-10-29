@@ -1,5 +1,15 @@
 # docker-node-java-jena
 
+## 6.0.0
+
+### Major Changes
+
+- 9dbb14b: Upgrade Jena version from 4.10.0 to 5.6.0
+- 9dbb14b: Change base image from ubuntu:22.04 to node:24-trixie-slim
+- 9dbb14b: Upgrade Node.js from version 20 to 24
+- 9dbb14b: Upgrade EYE version from 9.7.10 to 11.22.6
+- 9dbb14b: Upgrade OpenJDK version from 19 to 21
+
 ## 5.1.0
 
 ### Minor Changes
