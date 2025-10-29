@@ -1,27 +1,16 @@
-FROM docker.io/library/ubuntu:22.04
+FROM docker.io/library/node:24-trixie-slim
 
 ENV DEBIAN_FRONTEND="noninteractive"
-ENV NODE_VERSION="20"
-ENV EYE_VERSION="9.7.10"
-ENV JENA_VERSION="4.10.0"
+ENV EYE_VERSION="11.22.6"
+ENV JENA_VERSION="5.6.0"
 
 WORKDIR /app
 
 # install base tools + Java
 RUN apt-get update \
-  && apt-get install -y openjdk-19-jre curl vim git jq wget s3cmd unzip gpg lsb-release swi-prolog serdi \
-  && apt-get clean
-
-# install NodeJS
-RUN curl -fsSL https://deb.nodesource.com/gpgkey/nodesource.gpg.key | gpg --dearmor | tee /usr/share/keyrings/nodesource.gpg >/dev/null \
-  && gpg --no-default-keyring --keyring /usr/share/keyrings/nodesource.gpg --list-keys \
-  && chmod a+r /usr/share/keyrings/nodesource.gpg \
-  && DISTRO="$(lsb_release -s -c)" \
-  && echo "deb [signed-by=/usr/share/keyrings/nodesource.gpg] "https://deb.nodesource.com/node_${NODE_VERSION}.x" "${DISTRO}" main" | tee /etc/apt/sources.list.d/nodesource.list \
-  && echo "deb-src [signed-by=/usr/share/keyrings/nodesource.gpg] "https://deb.nodesource.com/node_${NODE_VERSION}.x" "${DISTRO}" main" | tee -a /etc/apt/sources.list.d/nodesource.list \
-  && apt-get update \
-  && apt-get install -y nodejs \
-  && apt-get clean
+  && apt-get install -y openjdk-21-jre curl vim git jq wget s3cmd unzip gpg lsb-release swi-prolog serdi \
+  && apt-get clean \
+  && rm -rf /var/lib/apt/lists/*
 
 # Install Minio client
 COPY --from=minio/mc:latest /usr/bin/mc /usr/bin/mc
