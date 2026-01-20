@@ -1,5 +1,15 @@
 # docker-node-java-jena
 
+## 6.1.0
+
+### Minor Changes
+
+- 14ea8d9: Add `raptor2-utils`
+
+### Patch Changes
+
+- 919b85b: Bump eye to 11.23.7
+
 ## 6.0.0
 
 ### Major Changes
