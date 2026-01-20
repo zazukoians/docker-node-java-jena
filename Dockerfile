@@ -8,7 +8,7 @@ WORKDIR /app
 
 # install base tools + Java
 RUN apt-get update \
-  && apt-get install -y openjdk-21-jre curl vim git jq wget s3cmd unzip gpg lsb-release swi-prolog serdi \
+  && apt-get install -y openjdk-21-jre curl vim git jq wget s3cmd unzip gpg lsb-release swi-prolog serdi raptor2-utils \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/*
 
