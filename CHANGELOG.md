@@ -1,5 +1,11 @@
 # docker-node-java-jena
 
+## 6.2.0
+
+### Minor Changes
+
+- 71ebc99: Bump Apache Jena from 5.6.0 to 6.0.0
+
 ## 6.1.0
 
 ### Minor Changes
