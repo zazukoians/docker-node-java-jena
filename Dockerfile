@@ -2,7 +2,7 @@ FROM docker.io/library/node:24-trixie-slim
 
 ENV DEBIAN_FRONTEND="noninteractive"
 ENV EYE_VERSION="11.23.7"
-ENV JENA_VERSION="5.6.0"
+ENV JENA_VERSION="6.0.0"
 
 WORKDIR /app
 
