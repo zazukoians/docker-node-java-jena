@@ -1,5 +1,11 @@
 # docker-node-java-jena
 
+## 6.3.0
+
+### Minor Changes
+
+- 3cb55a9: Add `sophia-cli` as `sop`
+
 ## 6.2.0
 
 ### Minor Changes
