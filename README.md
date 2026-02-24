@@ -16,8 +16,8 @@ The image contains a rich set of tools for working with RDF data:
 - **Java (OpenJDK 21)**: Required for running Apache Jena and other JVM-based tools.
 
 ### RDF Frameworks & Reasoning
-- **[Apache Jena](https://jena.apache.org/)(v6.0.0)**: A complete framework for building Semantic Web and Linked Data applications. Includes CLI tools like `riot`, `sparql`, etc.
-- **[EYE Reasoning Engine](https://github.com/eyereasoner/eye/)(v11.23.7)**: A performant reasoning engine for N3 (Notation3).
+- **[Apache Jena](https://jena.apache.org/)(v6.x)**: A complete framework for building Semantic Web and Linked Data applications. Includes CLI tools like `riot`, `sparql`, etc.
+- **[EYE Reasoning Engine](https://github.com/eyereasoner/eye/)(v11.x)**: A performant reasoning engine for N3 (Notation3).
 - **[sophia-cli (`sop`)](https://github.com/pchampin/sophia-cli)**: A versatile CLI tool for RDF processing based on the Sophia toolkit.
 
 ### Specialized RDF Tooling
